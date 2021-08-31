@@ -5,39 +5,27 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var appTitle = 'Beipackzettel';
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: appTitle,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lightBlue,
+        canvasColor: Colors.lightBlue[100],
+        textTheme: TextTheme(
+          headline5: TextStyle(fontSize: 18),
+          headline6: TextStyle(fontSize: 18),
+          caption: TextStyle(color: Colors.grey[500]),
+        ),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: appTitle),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -46,68 +34,232 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Center(
+              child: Column(
+                children: [
+                  Text(
+                    'Die Anti-Rentner-Praline',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  Text(
+                    'b\ündelt die geballte Kraft von Koffein und Ethanol',
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1!
+                        .copyWith(fontStyle: FontStyle.italic),
+                  ),
+                ],
+              ),
             ),
+            SizedBox(height: 25),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              'Folgende Sorten gibt es:',
+              style: Theme.of(context).textTheme.headline5,
             ),
+            SizedBox(height: 10),
+            Expanded(
+              child: Scrollbar(
+                isAlwaysShown: true,
+                radius: Radius.circular(5),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: ListView(
+                    children: [
+                      Praline(
+                        imagePath: 'images/dummy_praline.jpg',
+                        name: 'Classic',
+                        nsfd: true,
+                        info: 'Feine Ganache gefüllt mit Nougat',
+                      ),
+                      Praline(
+                        imagePath: 'images/dummy_praline.jpg',
+                        name: 'Express',
+                        nsfd: true,
+                        info:
+                            'Feine Ganache gefüllt mit einer extra Portion Kaffeelikör und Espresso',
+                      ),
+                      Praline(
+                        imagePath: 'images/dummy_praline.jpg',
+                        name: 'Double Nuss',
+                        nsfd: false,
+                        isPlacebo: true,
+                        info:
+                            'Zartbitterschokolade gefüllt mit Nougat und Mandel',
+                      ),
+                      Praline(
+                        imagePath: 'images/dummy_praline.jpg',
+                        name: 'Soft Core',
+                        nsfd: true,
+                        isPlacebo: false,
+                        info:
+                            'Zartbitterschokolade gefüllt mit Ganache. Dekoriert mit einer Mokkabohne.',
+                      ),
+                      Praline(
+                        imagePath: 'images/dummy_praline.jpg',
+                        name: 'Orange',
+                        nsfd: true,
+                        isPlacebo: true,
+                        info:
+                            'Zartbitterschokolade gefüllt mit hausgemachter Orangenmarmelade und Cointreau',
+                      ),
+                      Praline(
+                        imagePath: 'images/dummy_praline.jpg',
+                        name: 'Liquid Power',
+                        nsfd: true,
+                        info:
+                            'Zweierlei Schokolade gefüllt mit einer extra Portion Kaffeelikör und Espresso',
+                      ),
+                      Praline(
+                        imagePath: 'images/dummy_praline.jpg',
+                        name: 'Light',
+                        nsfd: false,
+                        info: 'Zweierlei Schokolade mit Mokkabohnen',
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                'Die Pralinenmanufaktur deines Vertrauens wünscht lange Nächte und alles Gute zum Geburtstag!',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+            ),
+            Divider(),
+            AsteriskExplanation(
+                nrAsterisks: 1,
+                description:
+                    'Not Safe For Driving.\nVom Konsum vor oder während dem Führen eines Kraftfahrzeugs wird abgeraten. Die Pralinenmanufaktur weist jegliche Haftung von sich.'),
+            AsteriskExplanation(
+                nrAsterisks: 2,
+                description:
+                    'Bei den Anti-Rentner-Pralinen Orange und Double Nuss handelt es sich um Placebopräparate'),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class Praline extends StatelessWidget {
+  const Praline(
+      {Key? key,
+      required this.imagePath,
+      required this.name,
+      this.info = "",
+      this.nsfd = false,
+      this.isPlacebo = false})
+      : super(key: key);
+
+  final String imagePath;
+  final String name;
+  final String info;
+  final bool nsfd;
+  final bool isPlacebo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            imagePath,
+            height: 100,
+            width: 100,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "ARP: ",
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      Text(
+                        '$name',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      Text(
+                        isPlacebo ? ' **' : "",
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    '$info',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        nsfd ? "NSFD" : "",
+                        textAlign: TextAlign.end,
+                      ),
+                      Text(nsfd ? '*' : "",
+                          style: Theme.of(context).textTheme.caption),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AsteriskExplanation extends StatelessWidget {
+  const AsteriskExplanation(
+      {Key? key, required this.nrAsterisks, required this.description})
+      : super(key: key);
+
+  final int nrAsterisks;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 30,
+          child: Text(
+            '*' * nrAsterisks,
+            style: Theme.of(context).textTheme.caption,
+          ),
+        ),
+        Flexible(
+          child: Text(
+            description,
+            style: Theme.of(context).textTheme.caption,
+          ),
+        )
+      ],
     );
   }
 }
