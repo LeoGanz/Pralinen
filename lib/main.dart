@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:pralinen/theme_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  return runApp(
+    ChangeNotifierProvider<ThemeModel>(
+      create: (_) => new ThemeModel(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appTitle = 'Beipackzettel';
+    var customTextTheme = TextTheme(
+      headline5: TextStyle(fontSize: 18),
+      headline6: TextStyle(fontSize: 18),
+      caption: TextStyle(color: Colors.grey[500]),
+    );
     return MaterialApp(
       title: appTitle,
       theme: ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.lightBlue,
-        canvasColor: Colors.lightBlue[100],
-        textTheme: TextTheme(
-          headline5: TextStyle(fontSize: 18),
-          headline6: TextStyle(fontSize: 18),
-          caption: TextStyle(color: Colors.grey[500]),
-        ),
+        canvasColor: Colors.lightBlue[50],
+        textTheme: customTextTheme,
       ),
+      darkTheme:
+          ThemeData(brightness: Brightness.dark, textTheme: customTextTheme),
+      themeMode: context.watch<ThemeModel>().mode,
       home: MyHomePage(title: appTitle),
     );
   }
@@ -62,7 +74,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 15),
+            Row(
+              children: [
+                Text('Wer in 2021 hat denn bitte keinen Dark Mode? '),
+                Switch(
+                  value: context.watch<ThemeModel>().isDark,
+                  onChanged: (useDark) => context.read<ThemeModel>().isDark =useDark,
+                ),
+              ],
+            ),
             Text(
               'Folgende Sorten gibt es:',
               style: Theme.of(context).textTheme.headline5,
@@ -172,8 +193,12 @@ class Praline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color? orangeCardColor = context.watch<ThemeModel>().mode == ThemeMode.dark
+        ? Colors.deepOrange[700]
+        : Colors.orange[100];
     return Card(
       elevation: 3,
+      color: name != 'Orange' ? Theme.of(context).cardColor : orangeCardColor,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
