@@ -60,7 +60,7 @@ class Praline extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: SnackBarDisplay(
-                msg: 'Aufs Bild klicken zum vergrößern',
+                msg: 'Aufs Bild klicken zum Vergrößern',
                 duration: const Duration(seconds: 1),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
