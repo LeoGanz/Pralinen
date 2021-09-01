@@ -37,21 +37,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -81,7 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text('Wer in 2021 hat denn bitte keinen Dark Mode? '),
                 Switch(
                   value: context.watch<ThemeModel>().isDark,
-                  onChanged: (useDark) => context.read<ThemeModel>().isDark =useDark,
+                  onChanged: (useDark) =>
+                      context.read<ThemeModel>().isDark = useDark,
                 ),
               ],
             ),
