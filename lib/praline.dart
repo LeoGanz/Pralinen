@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pralinen/hero_animation.dart';
+import 'package:pralinen/snackbar_display.dart';
 import 'package:pralinen/theme_model.dart';
 import 'package:provider/provider.dart';
 
@@ -58,45 +59,49 @@ class Praline extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "ARP: ",
-                        style: Theme.of(context).textTheme.headline5,
-                      ),
-                      Text(
-                        '$name',
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      Text(
-                        isPlacebo ? ' **' : "",
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    '$info',
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        nsfd ? "NSFD" : "",
-                        textAlign: TextAlign.end,
-                      ),
-                      Text(nsfd ? '*' : "",
-                          style: Theme.of(context).textTheme.caption),
-                    ],
-                  )
-                ],
+              child: SnackBarDisplay(
+                msg: 'Aufs Bild klicken zum vergrößern',
+                duration: const Duration(seconds: 1),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "ARP: ",
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        Text(
+                          '$name',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                        Text(
+                          isPlacebo ? ' **' : "",
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      '$info',
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          nsfd ? "NSFD" : "",
+                          textAlign: TextAlign.end,
+                        ),
+                        Text(nsfd ? '*' : "",
+                            style: Theme.of(context).textTheme.caption),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

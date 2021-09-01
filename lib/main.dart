@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pralinen/praline.dart';
+import 'package:pralinen/snackbar_display.dart';
 import 'package:pralinen/theme_model.dart';
 import 'package:provider/provider.dart';
 
@@ -59,20 +60,23 @@ class MyHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Center(
-              child: Column(
-                children: [
-                  Text(
-                    'Die Anti-Rentner-Praline',
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                  Text(
-                    'b\ündelt die geballte Kraft von Koffein und Ethanol',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1!
-                        .copyWith(fontStyle: FontStyle.italic),
-                  ),
-                ],
+              child: SnackBarDisplay(
+                msg: "Hier gibt's nichts zu klicken!",
+                child: Column(
+                  children: [
+                    Text(
+                      'Die Anti-Rentner-Praline',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    Text(
+                      'b\ündelt die geballte Kraft von Koffein und Ethanol',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1!
+                          .copyWith(fontStyle: FontStyle.italic),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 15),
@@ -156,9 +160,12 @@ class MyHomePage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Text(
-                'Die Pralinenmanufaktur deines Vertrauens wünscht lange Nächte und alles Gute zum Geburtstag!',
-                style: Theme.of(context).textTheme.subtitle1,
+              child: SnackBarDisplay(
+                msg: 'Immer diese Leute, die meinen, alles anklicken zu müssen',
+                child: Text(
+                  'Die Pralinenmanufaktur deines Vertrauens wünscht lange Nächte und alles Gute zum Geburtstag!',
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
               ),
             ),
             Divider(),
@@ -166,10 +173,13 @@ class MyHomePage extends StatelessWidget {
                 nrAsterisks: 1,
                 description:
                     'Not Safe For Driving.\nVom Konsum vor oder während dem Führen eines Kraftfahrzeugs wird abgeraten. Die Pralinenmanufaktur weist jegliche Haftung von sich.'),
-            AsteriskExplanation(
-                nrAsterisks: 2,
-                description:
-                    'Bei den Anti-Rentner-Pralinen Orange und Double Nuss handelt es sich um Placebopräparate ohne Koffein.'),
+            SnackBarDisplay(
+              msg: 'Die ARP: Light ist auch nur dank den 3% Kaffee in den Mokkabohnen kein Placebo',
+              child: AsteriskExplanation(
+                  nrAsterisks: 2,
+                  description:
+                      'Bei den Anti-Rentner-Pralinen Orange und Double Nuss handelt es sich um Placebopräparate ohne Koffein.'),
+            ),
           ],
         ),
       ),
