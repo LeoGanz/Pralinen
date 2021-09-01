@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         nsfd: true,
                         isPlacebo: false,
                         info:
-                            'Zartbitterschokolade gefüllt mit Ganache. Dekoriert mit einer Mokkabohne.',
+                            'Zartbitterschokolade gefüllt mit Ganache, dekoriert mit einer Mokkabohne',
                       ),
                       Praline(
                         imagePath: 'images/orange.jpg',
@@ -168,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
             AsteriskExplanation(
                 nrAsterisks: 2,
                 description:
-                    'Bei den Anti-Rentner-Pralinen Orange und Double Nuss handelt es sich um Placebopräparate'),
+                    'Bei den Anti-Rentner-Pralinen Orange und Double Nuss handelt es sich um Placebopräparate ohne Koffein.'),
           ],
         ),
       ),
