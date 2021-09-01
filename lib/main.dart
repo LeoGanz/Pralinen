@@ -14,11 +14,11 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appTitle = 'Beipackzettel';
+    var appTitle = 'Pralinen-Beipackzettel';
     var customTextTheme = TextTheme(
       headline5: TextStyle(fontSize: 18),
       headline6: TextStyle(fontSize: 18),
-      caption: TextStyle(color: Colors.grey[500]),
+      caption: TextStyle(color: Colors.grey),
     );
     return MaterialApp(
       title: appTitle,
@@ -98,20 +98,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ListView(
                     children: [
                       Praline(
-                        imagePath: 'images/dummy_praline.jpg',
+                        imagePath: 'images/ganache_nougat.jpg',
                         name: 'Classic',
                         nsfd: true,
                         info: 'Feine Ganache gefüllt mit Nougat',
                       ),
                       Praline(
-                        imagePath: 'images/dummy_praline.jpg',
+                        imagePath: 'images/ganache_schnaps.jpg',
                         name: 'Express',
                         nsfd: true,
                         info:
-                            'Feine Ganache gefüllt mit einer extra Portion Kaffeelikör und Espresso',
+                            'Feine Ganache gefüllt mit Kaffeelikör und Espresso',
                       ),
                       Praline(
-                        imagePath: 'images/dummy_praline.jpg',
+                        imagePath: 'images/nuss.jpg',
                         name: 'Double Nuss',
                         nsfd: false,
                         isPlacebo: true,
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             'Zartbitterschokolade gefüllt mit Nougat und Mandel',
                       ),
                       Praline(
-                        imagePath: 'images/dummy_praline.jpg',
+                        imagePath: 'images/schoko_ganache.jpg',
                         name: 'Soft Core',
                         nsfd: true,
                         isPlacebo: false,
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             'Zartbitterschokolade gefüllt mit Ganache. Dekoriert mit einer Mokkabohne.',
                       ),
                       Praline(
-                        imagePath: 'images/dummy_praline.jpg',
+                        imagePath: 'images/orange.jpg',
                         name: 'Orange',
                         nsfd: true,
                         isPlacebo: true,
@@ -135,14 +135,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             'Zartbitterschokolade gefüllt mit hausgemachter Orangenmarmelade und Cointreau',
                       ),
                       Praline(
-                        imagePath: 'images/dummy_praline.jpg',
+                        imagePath: 'images/schnaps.jpg',
                         name: 'Liquid Power',
                         nsfd: true,
                         info:
-                            'Zweierlei Schokolade gefüllt mit einer extra Portion Kaffeelikör und Espresso',
+                            'Zweierlei Schokolade gefüllt mit einer extra großen Portion Kaffeelikör und Espresso',
                       ),
                       Praline(
-                        imagePath: 'images/dummy_praline.jpg',
+                        imagePath: 'images/zweierlei.jpg',
                         name: 'Light',
                         nsfd: false,
                         info: 'Zweierlei Schokolade mit Mokkabohnen',
@@ -195,17 +195,17 @@ class Praline extends StatelessWidget {
   Widget build(BuildContext context) {
     Color? orangeCardColor = context.watch<ThemeModel>().mode == ThemeMode.dark
         ? Colors.deepOrange[700]
-        : Colors.orange[100];
+        : Theme.of(context).cardColor; // or Colors.orange[100]
     return Card(
       elevation: 3,
       color: name != 'Orange' ? Theme.of(context).cardColor : orangeCardColor,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             imagePath,
-            height: 100,
-            width: 100,
+            height: 120,
+            width: 120,
           ),
           Expanded(
             child: Padding(
